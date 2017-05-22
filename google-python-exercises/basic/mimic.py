@@ -43,26 +43,35 @@ columns, so the output looks better.
 
 import random
 import sys
+from pprint import pprint
+from random import randint
+
 
 
 def mimic_dict(filename):
-  """Returns mimic dict mapping each word to list of words which follow it."""
-  chaves = []
-  valores = []
-  linha = []
-  with open(filename) as arquivo:
-      for i,linha in enumerate(arquivo):
-        chaves = linha.split('\n')
-        print(chaves)
+    """Returns mimic dict mapping each word to list of words which follow it."""
+    dicionario = {}
+    with open(filename) as arquivo:
+        for linha in arquivo:
+            linha = linha.split()
+            if not linha: #linha vazia
+                continue
+            dicionario[linha[0]] = linha[1:]
 
+    #pprint(dicionario)
 
-  return 0
+    return dicionario
 
 
 def print_mimic(mimic_dict, word):
-  """Given mimic dict and start word, prints 200 random words."""
-  # +++your code here+++
-  return
+    """Given mimic dict and start word, prints 200 random words."""
+
+    lista_dicionario = list(mimic_dict.keys())
+    for i in range(0,200):
+        rnumber = random.randint(0, len(mimic_dict) - 1)
+        print (lista_dicionario[rnumber])
+
+    return 0
 
 
 # Provided main(), calls mimic_dict() and mimic()
