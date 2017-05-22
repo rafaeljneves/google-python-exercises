@@ -21,7 +21,25 @@ word2 count2
 Print the above list in order sorted by word (python will sort punctuation to
 come before letters -- that's fine). Store all the words as lowercase,
 so 'The' and 'the' count as the same word.
+"""
+def wordcount(filename):
+    with open(filename,'r') as arquivo:
+        wordcount = {}
+        for word in arquivo.read().split():
+            word = word.lower()
+            if word not in wordcount:
+                wordcount[word] = 1
+            else:
+                wordcount[word] += 1
+    return wordcount
 
+def print_words(filename):
+
+        dicionario = wordcount(filename)
+        for k,v in sorted(dicionario.items()):
+            print(k,v)
+
+"""
 2. For the --topcount flag, implement a print_top(filename) which is similar
 to print_words() but which prints just the top 20 most common words sorted
 so the most common word is first, then the next most common, and so on.
@@ -36,6 +54,23 @@ Optional: define a helper function to avoid code duplication inside
 print_words() and print_top().
 
 """
+def print_top(filename):
+
+    try:
+
+        dicionario = wordcount(filename)
+        lista_ordenada = sorted(dicionario.items(), key=lambda x:x[1], reverse=True)
+        lista_ordenada_20 = []
+        for i in range(20):
+            lista_ordenada_20.append(lista_ordenada[i])
+        for word,freq in lista_ordenada_20:
+            print(word,': ', freq)
+
+    except:
+        if IndexError:
+            print('O dicionário contém menos de 20 itens!. Trate a exceção!')
+            pass
+
 
 import sys
 
