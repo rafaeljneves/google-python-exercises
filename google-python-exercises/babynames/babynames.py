@@ -65,6 +65,13 @@ def main():
         # For each filename, get the names, then either print the text output
         # or write it to a summary file
 
+    #-Extract the year and print it
+    with open('baby1990.html', 'r') as arquivo:
+        for linha in arquivo:
+            ano = re.search('(^<h3.*)([1-3][0-9]{3})', linha)
+            if ano:
+                print(ano.group(2))
+
 
 if __name__ == '__main__':
     main()
