@@ -71,6 +71,10 @@ def main():
             ano = re.search('(^<h3.*)([1-3][0-9]{3})', linha)
             if ano:
                 print(ano.group(2))
+            # -Extract the names and rank numbers and just print them
+            rank = re.search('<td.*?>(.*?)<\/td><td>(.*?)<\/td><td>(.*?)<\/td>', linha)
+            if rank:
+                print(rank.group(1), rank.group(2), rank.group(3))
 
 
 if __name__ == '__main__':
