@@ -68,13 +68,23 @@ def main():
     #-Extract the year and print it
     with open('baby1990.html', 'r') as arquivo:
         for linha in arquivo:
-            ano = re.search('(^<h3.*)([1-3][0-9]{3})', linha)
+            ano = re.search('(^<h3.*)([1-2][0-9]{3})', linha)
+            rank = re.search('<td.*?>(.*?)<\/td><td>(.*?)<\/td><td>(.*?)<\/td>', linha)
             if ano:
                 print(ano.group(2))
+
             # -Extract the names and rank numbers and just print them
-            rank = re.search('<td.*?>(.*?)<\/td><td>(.*?)<\/td><td>(.*?)<\/td>', linha)
             if rank:
-                print(rank.group(1), rank.group(2), rank.group(3))
+                print(rank.group(2), rank.group(3), rank.group(1))
+
+                # -Get the names data into a dict and print it
+                dict_rank_names = {}
+                for i in range(2,4):
+                    key, values = rank.group(i), rank.group(1)
+                    dict_rank_names[key] = values
+                print(dict_rank_names)
+
+
 
 
 if __name__ == '__main__':
