@@ -91,12 +91,19 @@ def main():
         summary = True
         del args[0]
 
+    # Extrai dados do arquivo escolhido
+    if args[0].endswith('.html'):
+        arquivo = args[0]
+        print('arquivo: ', arquivo)
+        print(extract_names(arquivo))
+
     # For each filename, get the names, then either print the text output
     # or write it to a summary file
-    for root, dirs, files in os.walk(os.getcwd()):
-        for file in sorted(files):
-            if file.endswith('.html'):
-                print(extract_names(file))
+    if args[0] == '--lista':
+        for root, dirs, files in os.walk(os.getcwd()):
+            for file in sorted(files):
+                if file.endswith('.html'):
+                    print(extract_names(file))
 
 
 if __name__ == '__main__':
