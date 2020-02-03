@@ -91,7 +91,8 @@ def main():
         summary = True
         del args[0]
 
-    # Extrai dados do arquivo escolhido
+
+    #Extrai dados do arquivo escolhido
     if args[0].endswith('.html'):
         arquivo = args[0]
         print('arquivo: ', arquivo)
